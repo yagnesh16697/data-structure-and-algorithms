@@ -25,7 +25,6 @@ def inorderIterative(root):
             print(curr.data, end=' ')
             curr = curr.right
  
-
 def preorder(root):
     if root is None:
         return
@@ -33,6 +32,31 @@ def preorder(root):
     preorder(root.left)
     preorder(root.right)
 
+def preorderIterative(root):
+    if root is None:
+        return
+    stack = deque()
+    stack.append(root)
+    while stack:
+        curr = stack.pop()
+        print(curr.data, end=' ')
+        if curr.right:
+            stack.append(curr.right)
+        if curr.left:
+            stack.append(curr.left)
+
+def preorderIterative(root):
+    if root is None:
+        return
+    stack = deque()
+    stack.append(root)
+    while stack:
+        curr = stack.pop()
+        print(curr.data, end=' ')
+        if curr.right:
+            stack.append(curr.right)
+        if curr.left:
+            stack.append(curr.left)
 
 def postorder(root):
     if root is None:
@@ -41,6 +65,21 @@ def postorder(root):
     postorder(root.right)
     print(root.data, end=" ")
 
+def postorderIterative(root):
+    if root is None:
+        return
+    stack = deque()
+    stack.append(root)
+    out = deque()
+    while stack:
+        curr = stack.pop()
+        out.append(curr.data)
+        if curr.left:
+            stack.append(curr.left)
+        if curr.right:
+            stack.append(curr.right)
+    while out:
+        print(out.pop(), end=' ')
 
 if __name__ == '__main__':
 
@@ -59,5 +98,9 @@ if __name__ == '__main__':
     inorderIterative(root)
     print("\nPreorder:")
     preorder(root)
+    print("\nPreorder Iterative:")
+    preorderIterative(root)
     print("\nPostorder:")
     postorder(root)
+    print("\nPostorder Iterative:")
+    postorderIterative(root)

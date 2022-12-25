@@ -1,3 +1,4 @@
+from collections import deque
 class Node:
     def __init__(self, key):
         self.left = None
@@ -12,6 +13,18 @@ def inorder(root):
     print(root.data, end=' ')
     inorder(root.right)
 
+def inorderIterative(root):
+    stack = deque()
+    curr = root
+    while stack or curr:
+        if curr:
+            stack.append(curr)
+            curr = curr.left
+        else:
+            curr = stack.pop()
+            print(curr.data, end=' ')
+            curr = curr.right
+ 
 
 def preorder(root):
     if root is None:
@@ -42,6 +55,8 @@ if __name__ == '__main__':
 
     print("Inorder:")
     inorder(root)
+    print("\nInorder Iterative:")
+    inorderIterative(root)
     print("\nPreorder:")
     preorder(root)
     print("\nPostorder:")
